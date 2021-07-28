@@ -13,7 +13,7 @@ ws.onerror = (error) => {
 
 ws.onclose = () => {
     console.log("Disconnected!")
-     ws = null
+     ws.close()
 
     setTimeout(() => {
       ws = new WebSocket(ws_url)
