@@ -4,6 +4,7 @@ let ws = new WebSocket(ws_url)
 
 ws.onopen = () => {
     ws.send('Message From Client')
+    console.log('Connected!')
 }
 
 ws.onerror = (error) => {
@@ -12,7 +13,12 @@ ws.onerror = (error) => {
 
 ws.onclose = () => {
     console.log("Disconnected!")
-    ws = new WebSocket(ws_url)
+     ws = null
+
+    setTimeout(() => {
+      ws = new WebSocket(ws_url)
+    }, 1000);
+   
 }
 
 const content = document.getElementById("content")
