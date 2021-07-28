@@ -1,4 +1,6 @@
-let ws = new WebSocket('ws://localhost:3000')
+let url = new URL(window.location.href);
+let ws_url = "ws://" + url.host
+let ws = new WebSocket(ws_url)
 
 ws.onopen = () => {
     ws.send('Message From Client')
@@ -10,7 +12,7 @@ ws.onerror = (error) => {
 
 ws.onclose = () => {
     console.log("Disconnected!")
-    ws = new WebSocket('ws://localhost:3000')
+    ws = new WebSocket(ws_url)
 }
 
 const content = document.getElementById("content")
