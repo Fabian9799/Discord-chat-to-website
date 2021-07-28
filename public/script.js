@@ -20,11 +20,9 @@ ws.onmessage = (e) => {
     let data = JSON.parse(JSON.stringify(e.data))
     data = JSON.parse(data)
 
-
     content.innerHTML += `
   <div class="navbar mb-4 shadow-lg bg-neutral text-neutral-content rounded-box m-4">
   <div class="flex-none">
-
   <div class="avatar">
   <div class="rounded-btn w-24 h-24">
     <img src="https://cdn.discordapp.com/avatars/${data.id}/${data.avatar}.jpg">
@@ -35,12 +33,15 @@ ws.onmessage = (e) => {
   <div class="flex-1 px-2 mx-2">
     <span class="text-lg font-bold">
            ${data.username} <br> <span class="font-normal">${data.message}</span>
-           <img src="${data.emoji}" height="80" width="90">
+           <img src="${data.emoji}">
           </span>
   </div>
 </div>
   `
-        //scroll to bottom
+
+
+
+    //scroll to bottom
     content.scrollIntoView(false)
 }
 

@@ -26,18 +26,20 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
+    if (message.author.bot) return;
     const args = message.content.split(' ');
     if (message.channel.id == process.env.DISCORD_CHANNEL_ID && message.channel.guild.id == process.env.DISCORD_SERVER_ID) {
         let data = {
             "message": message.content,
             "username": message.author.username,
             "avatar": message.author.avatar,
-            "id": message.author.id
+            "id": message.author.id,
+            "emoji": ""
         }
-        console.log(message.content);
+
 
         if ((message.content.includes('<a') || message.content.includes('<:')) && message.content.includes('>')) {
-            console.log(message.content);
+
 
             const { Util } = require('discord.js');
             for (const rawEmoji of args) {
@@ -45,7 +47,7 @@ client.on('message', message => {
                 if (parsedEmoji.id) {
                     const extension = parsedEmoji.animated ? ".gif" : ".png";
                     const url = `https://cdn.discordapp.com/emojis/${parsedEmoji.id + extension}`
-
+                    console.log(url)
                     data = {
                         "message": "",
                         "username": message.author.username,
@@ -54,14 +56,22 @@ client.on('message', message => {
                         "emoji": url
                     }
 
+
                 }
+
             }
         }
-        console.log(data)
-        wss.clients.forEach(function each(client) {
-            client.send(JSON.stringify(data));
+        message.channel.send(data.emoji)
+        setTimeout(() => {
 
-        });
+            wss.clients.forEach(function each(client) {
+                client.send(JSON.stringify(data));
+
+
+            });
+        }, 10)
+
+
     }
 });
 
