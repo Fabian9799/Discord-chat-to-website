@@ -27,7 +27,7 @@ Shows your discord messages from a specified channel on a website
 | DISCORD_CHANNEL_ID | Your Discord channel id |
 | DISCORD_SERVER_ID | Id of the Discord Server |
 
-
+if you are using HTTPS change `ws://` to `wss://` in script.js line 2
 ## Install packages & start
 
     npm i
