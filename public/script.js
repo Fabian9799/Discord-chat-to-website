@@ -1,4 +1,5 @@
-let url = new URL(window.location.href);
+function connect(){
+  let url = new URL(window.location.href);
 let ws_url = "ws://" + url.host
 let ws = new WebSocket(ws_url)
 
@@ -17,7 +18,7 @@ ws.onerror = (error) => {
 
 ws.onclose = () => {
     console.log("Disconnected!")
-   
+    connect()
 }
 
 const content = document.getElementById("content")
@@ -46,6 +47,8 @@ ws.onmessage = (e) => {
     //scroll to bottom
     content.scrollIntoView(false)
 }
+}
+connect()
 
 // Poggers
 function poggers() {
