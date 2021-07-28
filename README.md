@@ -16,7 +16,7 @@ Shows your discord messages from a specified channel on a website
 **NodeJS** version **16.5.0**
 # Installation
 ## Download repo
-    gh repo clone Fabian9799/PhilipsHue-Discord-Bot
+    gh repo clone Fabian9799/Discord-chat-to-website
 ## Config files
  1. Rename .env.example to .env
  2. Change all the default values in your .env file
