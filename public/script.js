@@ -8,17 +8,16 @@ ws.onopen = () => {
     console.log('Connected!')
 }
 
-setInterval(() => {
-  ws.send('ping')
-}, 30000);
-
 ws.onerror = (error) => {
     console.log(`WebSocket error: ${error}`)
 }
 
 ws.onclose = () => {
     console.log("Disconnected!")
-    connect()
+    setTimeout(() => {
+      ws = null
+      connect()
+    }, 5000);
 }
 
 const content = document.getElementById("content")
